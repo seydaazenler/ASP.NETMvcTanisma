@@ -27,30 +27,35 @@ namespace WebApplicationMVCIntroduction.Controllers
             return View("Error");
             
         }
-
+        
         // GET: Student/Create
         public ActionResult Create()
         {
             return View();
+            
         }
-
+        
         // POST: Student/Create
         [HttpPost]
         public ActionResult Create(Ogrenci ogr)
         {
             try
             {
-                // TODO: Add insert logic here
-                ogr.Id = Ogrenci.OgrenciListesi.Count + 1;
-                Ogrenci.OgrenciListesi.Add(ogr);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    //Eğer Tüm Parametreler doğruysa buraya gir.
+                    // TODO: Add insert logic here
+                    ogr.Id = Ogrenci.OgrenciListesi.Count + 1;
+                    Ogrenci.OgrenciListesi.Add(ogr);
+                    return RedirectToAction("Index");
+                }
+                return View();
             }
             catch
             {
                 return View("Error");
             }
         }
-
         // GET: Student/Edit/5
         public ActionResult Edit(int id)
         {
@@ -68,12 +73,19 @@ namespace WebApplicationMVCIntroduction.Controllers
         {
             try
             {
+                //if(ModelState.IsValid == false)
+                if (!ModelState.IsValid) //model geçerli olmadıysa yani istenilen validasyonları sağlamıyorsa
+                
+                {
+                    return View();
+                }
+
                 if (ogr.Id>0)
                 {
-                    var eskiOgr = Ogrenci.OgrenciListesi.FirstOrDefault(x => x.Id == ogr.Id);
-                    eskiOgr.Ad = ogr.Ad;
-                    eskiOgr.Soyad = ogr.Soyad;
-                    eskiOgr.DogumTarihi = ogr.DogumTarihi;
+                    var guncellenecekOgr = Ogrenci.OgrenciListesi.FirstOrDefault(x => x.Id == ogr.Id);
+                    guncellenecekOgr.Ad = ogr.Ad;
+                    guncellenecekOgr.Soyad = ogr.Soyad;
+                    guncellenecekOgr.DogumTarihi = ogr.DogumTarihi;
                 }
                 
                 return RedirectToAction("Index");

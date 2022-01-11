@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Yeni Öğrenci Ekle", "Create")
+    @Html.ActionLink("Yeni Öğrenci Ekle", "Create",null,new { @class = "btn btn-default",@style="background-color:powderblue; color:darkblue;" })
+    
 </p>
 <table class="table">
     <tr>
@@ -35,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.DogumTarihi)
         </td>
         <td>
-            @Html.ActionLink("Güncelle", "Edit", new {id=item.Id}) |
-            @Html.ActionLink("Detay Gör", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+            @Html.ActionLink("Güncelle", "Edit", new {id=item.Id}, new {@class="btn btn-warning"}) 
+            @Html.ActionLink("Detay Gör", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
