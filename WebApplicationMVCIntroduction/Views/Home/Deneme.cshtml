@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Deneme";
+}
+
+@{
+    int siraNo = 0;
+}
+<h2>Deneme</h2>
+
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>Sıra No</th>
+        <th>ViewBag'da Ne Varmış?</th>
+        <th>ViewData'da Ne Varmış?</th>
+        <th>TempData'da Ne Varmış?</th>
+        <th>ViewData'daki Soyad'da Ne Varmış?</th>
+    </tr>
+    <tr>
+        <td>@(++siraNo)</td>
+        <td>@ViewBag.Ad</td>
+        <td>@ViewData["Ad"]</td>
+        <td>@TempData["Adiniz"]</td>
+        <td>@ViewData["Soyad"]</td>
+    </tr>
+</table>
+
+
